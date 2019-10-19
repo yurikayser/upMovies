@@ -1,4 +1,4 @@
-package com.upmovies;
+package com.upmovies.main;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
