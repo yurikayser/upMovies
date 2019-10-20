@@ -9,7 +9,7 @@ import com.upmovies.model.MoviePageResult;
 
 public class TMDBClient {
 
-	private String TMDB_URL = "https://api.themoviedb.org/3/";
+	private String TMDB_URL = "http://api.themoviedb.org/3/";
 
 	private String API_KEY = "?api_key=1f54bd990f1cdfb230adb312546d765d";
 
