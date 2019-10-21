@@ -18,7 +18,7 @@ public class UpcomingMoviesController {
 
 	@GetMapping(value = "/movies")
 	public MoviePageResult getUpcomingMovies(@RequestParam Long page) {
-		return this.service.getAllMovies(1L);
+		return this.service.getAllMovies(page);
 	}
 
 	@GetMapping(value = "/movies/detail")
