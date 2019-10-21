@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.upmovies.model.GenreResult;
 import com.upmovies.model.Movie;
 import com.upmovies.model.MoviePageResult;
 
@@ -17,6 +18,8 @@ public class TMDBClient {
 		return this.TMDB_URL + apiEndPoint + this.API_KEY;
 	}
 
+	private RestTemplate template = new RestTemplate();
+
 	private String appendParameters(String baseUrl, List<String> params) {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);
 		params.forEach(param -> urlBuilder.append("&" + param));
@@ -24,17 +27,18 @@ public class TMDBClient {
 	}
 
 	public MoviePageResult getPaged(String apiEndPoint, List<String> params) {
-		RestTemplate template = new RestTemplate();
 		String url = this.appendParameters(this.getUrlFor(apiEndPoint), params);
-		MoviePageResult request = template.getForObject(url, MoviePageResult.class);
+		MoviePageResult request = this.template.getForObject(url, MoviePageResult.class);
 		return request;
 	}
 
 	public Movie getDetail(String movieId) {
-		RestTemplate template = new RestTemplate();
 		String url = this.getUrlFor(movieId);
-		Movie request = template.getForObject(url, Movie.class);
+		Movie request = this.template.getForObject(url, Movie.class);
 		return request;
 	}
 
+	public GenreResult getGenres() {
+		return this.template.getForObject(this.getUrlFor("genre/movie/list"), GenreResult.class);
+	}
 }

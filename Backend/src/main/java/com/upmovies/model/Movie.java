@@ -1,6 +1,5 @@
 package com.upmovies.model;
 
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,8 +18,10 @@ public class Movie {
 	@JsonProperty("genre_ids")
 	private List<String> genreIds;
 
+	private String genres;
+
 	@JsonProperty("release_date")
-	private Date releaseDate;
+	private String releaseDate;
 
 	private String overview;
 
@@ -64,11 +65,19 @@ public class Movie {
 		this.genreIds = genreIds;
 	}
 
-	public Date getReleaseDate() {
+	public String getReleaseDate() {
 		return this.releaseDate;
 	}
 
-	public void setReleaseDate(Date releaseDate) {
+	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+
+	public String getGenres() {
+		return this.genres;
+	}
+
+	public void setGenres(String genres) {
+		this.genres = genres;
 	}
 }
