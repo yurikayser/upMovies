@@ -6,6 +6,12 @@ export function requestUpcomingMovies(page) {
 
 export function requestSearchMovies(page, name) {
   return fetch(
-    "http://localhost:8080//movies/search?page=" + page + "&movieName=" + name
+    "http://localhost:8080/movies/search?page=" + page + "&movieName=" + name
   ).then(response => response.json());
+}
+
+export function requestMovieDetails(id) {
+  return fetch("http://localhost:8080/movies/detail?movieId=" + id).then(
+    response => response.json()
+  );
 }

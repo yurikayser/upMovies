@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.upmovies.TMDBClient;
 import com.upmovies.model.GenreResult;
 import com.upmovies.model.Movie;
+import com.upmovies.model.MovieDetailResult;
 import com.upmovies.model.MoviePageResult;
 
 @Service
@@ -42,7 +43,7 @@ public class TMDBService {
 		return result;
 	}
 
-	public Movie getMovieDetail(String movieId) {
+	public MovieDetailResult getMovieDetail(String movieId) {
 		return this.client.getDetail(movieId);
 	}
 

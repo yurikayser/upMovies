@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 
 import com.upmovies.model.GenreResult;
-import com.upmovies.model.Movie;
+import com.upmovies.model.MovieDetailResult;
 import com.upmovies.model.MoviePageResult;
 
 public class TMDBClient {
@@ -32,9 +32,9 @@ public class TMDBClient {
 		return request;
 	}
 
-	public Movie getDetail(String movieId) {
-		String url = this.getUrlFor(movieId);
-		Movie request = this.template.getForObject(url, Movie.class);
+	public MovieDetailResult getDetail(String movieId) {
+		String url = this.getUrlFor("movie/" + movieId);
+		MovieDetailResult request = this.template.getForObject(url, MovieDetailResult.class);
 		return request;
 	}
 

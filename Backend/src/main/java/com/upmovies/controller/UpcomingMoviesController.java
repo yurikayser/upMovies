@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.upmovies.model.Movie;
+import com.upmovies.model.MovieDetailResult;
 import com.upmovies.model.MoviePageResult;
 import com.upmovies.service.TMDBService;
 
@@ -22,7 +22,7 @@ public class UpcomingMoviesController {
 	}
 
 	@GetMapping(value = "/movies/detail")
-	public Movie getMovieDetail(@RequestParam String movieId) {
+	public MovieDetailResult getMovieDetail(@RequestParam String movieId) {
 		return this.service.getMovieDetail(movieId);
 	}
 

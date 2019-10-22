@@ -23,7 +23,7 @@ class MoviesList extends Component {
       requestSearchMovies(page, this.state.filter).then(data => {
         this.setState({
           page: data.page,
-          totalPages: data.total_Pages,
+          totalPages: data.total_pages,
           results: data.results,
           isOnSearch: true
         });
@@ -32,7 +32,7 @@ class MoviesList extends Component {
       requestUpcomingMovies(page).then(data => {
         this.setState({
           page: data.page,
-          totalPages: data.total_Pages,
+          totalPages: data.total_pages,
           results: data.results,
           isOnSearch: false
         });
@@ -55,6 +55,7 @@ class MoviesList extends Component {
     if (this.state.results.length > 0) {
       return (
         <div>
+          <h2>Upcoming Movies</h2>
           <SearchComponent onSearchClick={this.updateFilter} />
           <Container>
             <Row>
@@ -78,7 +79,12 @@ class MoviesList extends Component {
                       <Card.Text>
                         <b>Release Date:</b> {element.release_date}
                       </Card.Text>
-                      <Button variant="primary">Details</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => this.props.onDetailClick(element.id)}
+                      >
+                        Details
+                      </Button>
                     </Card.Body>
                   </Card>
                 );
@@ -90,7 +96,7 @@ class MoviesList extends Component {
               disabled={this.state.page === 1}
               onClick={() => this.requestData(this.state.page - 1)}
             />
-            {this.state.page} of 55
+            {this.state.page} of {"" + this.state.totalPages}
             <Pagination.Next
               onClick={() => this.requestData(this.state.page + 1)}
             />
@@ -100,6 +106,7 @@ class MoviesList extends Component {
     } else {
       return (
         <div>
+          <h2>Upcoming Movies</h2>
           <SearchComponent onSearchClick={this.searchMoviesRequest} />
           <p>Loading...</p>;
         </div>
