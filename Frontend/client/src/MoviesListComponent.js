@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Pagination, Card, Button, Container, Row } from "react-bootstrap";
 import { SearchComponent } from "./SearchComponent";
+import {
+  requestSearchMovies,
+  requestUpcomingMovies
+} from "./requests/requests";
 
 class MoviesList extends Component {
   constructor(props) {
@@ -9,29 +13,14 @@ class MoviesList extends Component {
       page: 1,
       totalPages: 1,
       results: [],
-      isOnSearch: false
+      isOnSearch: false,
+      filter: ""
     };
   }
 
   requestData = page => {
-    fetch("http://localhost:8080/movies?page=" + page)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          page: data.page,
-          totalPages: data.total_Pages,
-          results: data.results,
-          isOnSearch: false
-        });
-      });
-  };
-
-  searchMoviesRequest = name => {
-    fetch(
-      "http://localhost:8080//movies/search?page=" + 1 + "&movieName=" + name
-    )
-      .then(response => response.json())
-      .then(data => {
+    if (this.state.isOnSearch) {
+      requestSearchMovies(page, this.state.filter).then(data => {
         this.setState({
           page: data.page,
           totalPages: data.total_Pages,
@@ -39,6 +28,23 @@ class MoviesList extends Component {
           isOnSearch: true
         });
       });
+    } else {
+      requestUpcomingMovies(page).then(data => {
+        this.setState({
+          page: data.page,
+          totalPages: data.total_Pages,
+          results: data.results,
+          isOnSearch: false
+        });
+      });
+    }
+  };
+
+  updateFilter = search => {
+    this.setState(
+      { filter: search, isOnSearch: search === "" ? false : true },
+      () => this.requestData(1)
+    );
   };
 
   componentDidMount() {
@@ -49,7 +55,7 @@ class MoviesList extends Component {
     if (this.state.results.length > 0) {
       return (
         <div>
-          <SearchComponent onSearchClick={this.searchMoviesRequest} />
+          <SearchComponent onSearchClick={this.updateFilter} />
           <Container>
             <Row>
               {this.state.results.map(element => {
