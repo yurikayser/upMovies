@@ -17,16 +17,19 @@ public class UpcomingMoviesController {
 	private TMDBService service;
 
 	@GetMapping(value = "/movies")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public MoviePageResult getUpcomingMovies(@RequestParam Long page) {
 		return this.service.getAllMovies(page);
 	}
 
 	@GetMapping(value = "/movies/detail")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public MovieDetailResult getMovieDetail(@RequestParam String movieId) {
 		return this.service.getMovieDetail(movieId);
 	}
 
 	@GetMapping(value = "/movies/search")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public MoviePageResult seachByMovieName(@RequestParam String movieName, @RequestParam Long page) {
 		return this.service.searchMovie(movieName, page);
 	}
