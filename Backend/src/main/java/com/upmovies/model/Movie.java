@@ -18,8 +18,6 @@ public class Movie {
 	@JsonProperty("genre_ids")
 	private List<String> genreIds;
 
-	private String genres;
-
 	@JsonProperty("release_date")
 	private String releaseDate;
 
@@ -73,11 +71,4 @@ public class Movie {
 		this.releaseDate = releaseDate;
 	}
 
-	public String getGenres() {
-		return this.genres;
-	}
-
-	public void setGenres(String genres) {
-		this.genres = genres;
-	}
 }

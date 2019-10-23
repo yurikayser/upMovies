@@ -65,12 +65,7 @@ public class TMDBService {
 				.stream()
 				.map(genreId -> this.genres.get(Long.parseLong(genreId)))
 				.collect(Collectors.toList());
-		StringBuilder genreBuilder = new StringBuilder();
-		for (int i = 0; i < parsedGenres.size(); i++) {
-			genreBuilder.append(parsedGenres.get(i));
-			genreBuilder.append(i == parsedGenres.size() - 1 ? "" : ", ");
-		}
-		movie.setGenres(genreBuilder.toString());
+		movie.setGenreIds(parsedGenres);
 		return movie;
 
 	}

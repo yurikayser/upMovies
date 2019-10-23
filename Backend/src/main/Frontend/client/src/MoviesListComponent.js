@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Pagination, Card, Button, Container, Row } from "react-bootstrap";
+import { Pagination, Card, Button, Badge } from "react-bootstrap";
 import { SearchComponent } from "./SearchComponent";
 import {
   requestSearchMovies,
@@ -71,9 +71,13 @@ class MoviesList extends Component {
                     <Card.Title>
                       <h2>{element.title}</h2>
                     </Card.Title>
-                    <Card.Text>
-                      <b>Genres</b>: {element.genres}
-                    </Card.Text>
+                    {element.genre_ids.map(genre => {
+                      return (
+                        <Badge pill variant="primary">
+                          {genre}
+                        </Badge>
+                      );
+                    })}
                     <Card.Text>
                       <b>Release Date:</b> {element.release_date}
                     </Card.Text>
