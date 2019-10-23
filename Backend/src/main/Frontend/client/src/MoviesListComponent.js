@@ -55,58 +55,59 @@ class MoviesList extends Component {
     if (this.state.results.length > 0) {
       return (
         <div>
-          <h2>Upcoming Movies</h2>
+          <h1>Upcoming Movies</h1>
           <SearchComponent onSearchClick={this.updateFilter} />
-          <Container>
-            <Row>
-              {this.state.results.map(element => {
-                return (
-                  <Card key={element.id} style={{ width: "30rem" }}>
-                    <Card.Body>
-                      <Card.Img
-                        variant="top"
-                        src={
-                          "https://image.tmdb.org/t/p/w200/" +
-                          element.poster_path
-                        }
-                      />
-                      <Card.Title>
-                        <h2>{element.title}</h2>
-                      </Card.Title>
-                      <Card.Text>
-                        <b>Genres</b>: {element.genres}
-                      </Card.Text>
-                      <Card.Text>
-                        <b>Release Date:</b> {element.release_date}
-                      </Card.Text>
-                      <Button
-                        variant="primary"
-                        onClick={() => this.props.onDetailClick(element.id)}
-                      >
-                        Details
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </Row>
-          </Container>
-          <Pagination>
-            <Pagination.Prev
-              disabled={this.state.page === 1}
-              onClick={() => this.requestData(this.state.page - 1)}
-            />
-            {this.state.page} of {"" + this.state.totalPages}
-            <Pagination.Next
-              onClick={() => this.requestData(this.state.page + 1)}
-            />
-          </Pagination>
+          <div className="cards-container">
+            {this.state.results.map(element => {
+              return (
+                <Card key={element.id} style={{ width: "30rem" }} bg="light">
+                  <Card.Body>
+                    <Card.Img
+                      variant="top"
+                      src={
+                        "https://image.tmdb.org/t/p/w200/" + element.poster_path
+                      }
+                    />
+                    <Card.Title>
+                      <h2>{element.title}</h2>
+                    </Card.Title>
+                    <Card.Text>
+                      <b>Genres</b>: {element.genres}
+                    </Card.Text>
+                    <Card.Text>
+                      <b>Release Date:</b> {element.release_date}
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => this.props.onDetailClick(element.id)}
+                    >
+                      Details
+                    </Button>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="pagination-container">
+            <Pagination>
+              <Pagination.Prev
+                disabled={this.state.page === 1}
+                onClick={() => this.requestData(this.state.page - 1)}
+              />
+              <span className="page-count-text">
+                {this.state.page} of {"" + this.state.totalPages}
+              </span>
+              <Pagination.Next
+                onClick={() => this.requestData(this.state.page + 1)}
+              />
+            </Pagination>
+          </div>
         </div>
       );
     } else {
       return (
         <div>
-          <h2>Upcoming Movies</h2>
+          <h1>Upcoming Movies</h1>
           <SearchComponent onSearchClick={this.searchMoviesRequest} />
           <p>Loading...</p>;
         </div>

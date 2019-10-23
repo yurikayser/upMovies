@@ -19,13 +19,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          {renderComponents(
-            this.state.isDetails,
-            this.state.idMovie,
-            this.detailCallBack
-          )}
-        </div>
+        {renderComponents(
+          this.state.isDetails,
+          this.state.idMovie,
+          this.detailCallBack
+        )}
       </div>
     );
   }

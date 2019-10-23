@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
 
 export const SearchComponent = props => {
   const { onSearchClick } = props;
@@ -14,23 +14,18 @@ export const SearchComponent = props => {
   };
 
   return (
-    <div className="SearchComponent">
+    <div className="search-component">
       <Form onSubmit={onSubmit}>
-        <Row>
-          <Col xs="6">
-            <Form.Group controlId="searchInput">
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Search for a movie"
-                onChange={onChange}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
+        <InputGroup className="mb-3" size="lg">
+          <Form.Control
+            type="text"
+            placeholder="Search for a movie"
+            onChange={onChange}
+          />
+          <InputGroup.Append>
             <Button type="submit">Search</Button>
-          </Col>
-        </Row>
+          </InputGroup.Append>
+        </InputGroup>
       </Form>
     </div>
   );
