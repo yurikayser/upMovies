@@ -11,7 +11,7 @@ import com.upmovies.model.MoviePageResult;
 import com.upmovies.service.TMDBService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UpcomingMoviesController {
 	@Autowired
 	private TMDBService service;
